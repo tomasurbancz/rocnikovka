@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class NewBehaviourScript : MonoBehaviour
+public class CreateAccount : MonoBehaviour
 {
     string _name;
     public TMP_InputField _nameField;
@@ -58,7 +58,7 @@ public class NewBehaviourScript : MonoBehaviour
         UpdateName();
     }
 
-    public void CreateAccount()
+    public void Create()
     {
         new LocalAccount(_name);
     }
