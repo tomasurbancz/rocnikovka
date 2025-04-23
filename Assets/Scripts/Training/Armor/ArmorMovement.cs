@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ArmorMovement : MonoBehaviour
 {
     private float _radius = 2f;
-    public Image _character;
+    public Image Character;
 
     private void Update()
     {
@@ -26,11 +26,11 @@ public class ArmorMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rotationAngle);
         if(rotationAngle < 90 && rotationAngle > -90)
         {
-            _character.transform.rotation = Quaternion.Euler(0, 0, 0);
+            Character.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
-            _character.transform.rotation = Quaternion.Euler(0, 180, 0);
+            Character.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 }

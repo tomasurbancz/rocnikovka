@@ -6,12 +6,12 @@ using TMPro;
 
 public class ArmorTraining : MonoBehaviour
 {
-    public Image _apple;
-    public Image _star;
+    public Image Apple;
+    public Image Star;
 
-    public Image _characterCollision;
+    public Image CharacterCollision;
 
-    public Image _armor;
+    public Image Armor;
 
     private List<ArmorTrainingObject> _trainingObjects = new List<ArmorTrainingObject>();
     private int _maxTrainingObjects = 5;
@@ -25,13 +25,13 @@ public class ArmorTraining : MonoBehaviour
     private float _speed = 2f;
 
     private Missions _missions;
-    public TMP_Text _missionHeaderText;
-    public TMP_Text _missionInfoText;
+    public TMP_Text MissionHeaderText;
+    public TMP_Text MissionInfoText;
 
     // Start is called before the first frame update
     void Start()
     {
-        _missions = new Missions(new ArmorMissions(), 0, _missionHeaderText, _missionInfoText, new MissionRewarder(MissionRewarder.Type.Armor));
+        _missions = new Missions(new ArmorMissions(), 0, MissionHeaderText, MissionInfoText, new MissionRewarder(MissionRewarder.Type.Armor));
         _scoreSlider = new ScoreSlider(Slider, Combo, 0, 10);
     }
 
@@ -42,11 +42,11 @@ public class ArmorTraining : MonoBehaviour
         Vector2 direction = CalculateDirection(location);
         if(random == 0)
         {
-            _trainingObjects.Add(ArmorTrainingObject.Create(_star, ArmorTrainingObject.TrainingObjectType.Star, location, direction));
+            _trainingObjects.Add(ArmorTrainingObject.Create(Star, ArmorTrainingObject.TrainingObjectType.Star, location, direction));
         }
         else
         {
-            _trainingObjects.Add(ArmorTrainingObject.Create(_apple, ArmorTrainingObject.TrainingObjectType.Apple, location, direction));
+            _trainingObjects.Add(ArmorTrainingObject.Create(Apple, ArmorTrainingObject.TrainingObjectType.Apple, location, direction));
         }
 
     }
@@ -76,7 +76,7 @@ public class ArmorTraining : MonoBehaviour
     {
         foreach (ArmorTrainingObject trainingObject in _trainingObjects)
         {
-            trainingObject._image.transform.position = new Vector2(trainingObject._image.transform.position.x + (trainingObject._direction.x * Time.deltaTime * _speed/10), trainingObject._image.transform.position.y + (trainingObject._direction.y * Time.deltaTime * _speed/10));
+            trainingObject.Image.transform.position = new Vector2(trainingObject.Image.transform.position.x + (trainingObject.Direction.x * Time.deltaTime * _speed/10), trainingObject.Image.transform.position.y + (trainingObject.Direction.y * Time.deltaTime * _speed/10));
         }
     }
 
@@ -85,12 +85,12 @@ public class ArmorTraining : MonoBehaviour
         List<ArmorTrainingObject> trainingObjectsCopy = new List<ArmorTrainingObject>(_trainingObjects);
         foreach (ArmorTrainingObject trainingObject in trainingObjectsCopy)
         {
-            if (AreImagesOverlapping(trainingObject._image, _characterCollision))
+            if (AreImagesOverlapping(trainingObject.Image, CharacterCollision))
             {
                 _trainingObjects.Remove(trainingObject);
-                Destroy(trainingObject._image);
+                Destroy(trainingObject.Image);
                 Destroy(trainingObject);
-                if (trainingObject._trainingObjectType.Equals(ArmorTrainingObject.TrainingObjectType.Apple))
+                if (trainingObject.TrainingObject.Equals(ArmorTrainingObject.TrainingObjectType.Apple))
                     StartNewGame();
                 else
                 {
@@ -100,12 +100,12 @@ public class ArmorTraining : MonoBehaviour
                     UpdateScore();
                 }
             }
-            else if (AreImagesOverlapping(trainingObject._image, _armor))
+            else if (AreImagesOverlapping(trainingObject.Image, Armor))
             {
                 _trainingObjects.Remove(trainingObject);
-                Destroy(trainingObject._image);
+                Destroy(trainingObject.Image);
                 Destroy(trainingObject);
-                if (trainingObject._trainingObjectType.Equals(ArmorTrainingObject.TrainingObjectType.Apple))
+                if (trainingObject.TrainingObject.Equals(ArmorTrainingObject.TrainingObjectType.Apple))
                 {
                     _score++;
                     _missions.UpdateMission(MissionType.APPLES, 1);

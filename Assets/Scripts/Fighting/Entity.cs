@@ -12,7 +12,7 @@ public class Entity
     public string Name;
     public int MaxHP;
     public Fighting Fighting;
-    public Vector2 _startPosition;
+    public Vector2 StartPosition;
 
     public Image Collision1;
     public Image Collision2;
@@ -162,7 +162,7 @@ public class Entity
         CharacterNameLocation.text = Name;
         HealthBar.UpdateHP(0);
         _currentPosition = spawn.transform.position;
-        _startPosition = _currentPosition.ToNewVector2();
+        StartPosition = _currentPosition.ToNewVector2();
         if(!EntityType.Equals(Type.Player)) spawn.sprite = sprite;
         _image = spawn;
         Show();
@@ -173,7 +173,7 @@ public class Entity
         Color color = _image.color;
         color = new Color(color.r, color.g, color.b, 0);
         _image.color = color;
-        _image.transform.position = _startPosition;
+        _image.transform.position = StartPosition;
     }
 
     public void Show()
@@ -181,6 +181,6 @@ public class Entity
         Color color = _image.color;
         color = new Color(color.r, color.g, color.b, 1);
         _image.color = color;
-        _image.transform.position = _startPosition;
+        _image.transform.position = StartPosition;
     }
 }

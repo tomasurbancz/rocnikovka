@@ -33,13 +33,13 @@ public class Fighting : MonoBehaviour
     public TMP_Text ChestText;
     public Button Chest;
 
-    private Entity PlayerEntity;
-    private Entity CurrentEntity;
-    private List<Entity> Entities;
-    private int progress = 0;
-    private float Cooldown = 0.3f;
-    private Entity CurrentAttacking;
-    private Entity CurrentDefending;
+    private Entity _playerEntity;
+    private Entity _currentEntity;
+    private List<Entity> _entities;
+    private int _progress = 0;
+    private float _cooldown = 0.3f;
+    private Entity _currentAttacking;
+    private Entity _currentDefending;
 
     private bool playing = true;
 
@@ -56,22 +56,22 @@ public class Fighting : MonoBehaviour
         {
             case 1:
                 {
-                    Entities = new Level1().GetEntities();
+                    _entities = new Level1().GetEntities();
                     break;
                 }
             case 2:
                 {
-                    Entities = new Level1().GetEntities();
+                    _entities = new Level1().GetEntities();
                     break;
                 }
             case 3:
                 {
-                    Entities = new Level1().GetEntities();
+                    _entities = new Level1().GetEntities();
                     break;
                 }
             case 4:
                 {
-                    Entities = new Level1().GetEntities();
+                    _entities = new Level1().GetEntities();
                     break;
                 }
         }
@@ -80,18 +80,18 @@ public class Fighting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Cooldown > 0)
+        if (_cooldown > 0)
         {
-            CurrentAttacking.Update();
+            _currentAttacking.Update();
         }
-        if (Cooldown <= 0 && playing)
+        if (_cooldown <= 0 && playing)
         {
             Attack();
-            Entity copyOfAttacking = CurrentAttacking;
-            CurrentAttacking = CurrentDefending;
-            CurrentDefending = copyOfAttacking;
+            Entity copyOfAttacking = _currentAttacking;
+            _currentAttacking = _currentDefending;
+            _currentDefending = copyOfAttacking;
         }
-        Cooldown -= Time.deltaTime;
+        _cooldown -= Time.deltaTime;
     }
 
     public void Defeated(Entity entity)
@@ -102,8 +102,8 @@ public class Fighting : MonoBehaviour
         }
         else
         {
-            progress++;
-            if(Entities.Count > progress) {
+            _progress++;
+            if(_entities.Count > _progress) {
                 SpawnNewEntity();
             }
             else
@@ -117,7 +117,7 @@ public class Fighting : MonoBehaviour
     {
         playing = false;
         Chest.gameObject.SetActive(true);
-        CurrentEntity.Hide();
+        _currentEntity.Hide();
 
         Slider1.gameObject.SetActive(false);
         Text1.color = Text1.color.GetTransparentColor();
@@ -131,55 +131,55 @@ public class Fighting : MonoBehaviour
 
     public void Attack()
     {
-        CurrentAttacking.StartMoving(CurrentDefending);
-        Cooldown = 1.5f;
+        _currentAttacking.StartMoving(_currentDefending);
+        _cooldown = 1.5f;
     }
 
     private void SpawnNewEntity()
     {
-        if(CurrentEntity != null)
+        if(_currentEntity != null)
         {
-            CurrentEntity.Hide();
+            _currentEntity.Hide();
         }
-        CurrentEntity = Entities[progress];
-        switch(CurrentEntity.EntityType)
+        _currentEntity = _entities[_progress];
+        switch(_currentEntity.EntityType)
         {
             case Entity.Type.Spider:
                 {
-                    CurrentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, SpiderTexture, Collision1, Collision2, Collision3, Collision4);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, SpiderTexture, Collision1, Collision2, Collision3, Collision4);
                     break;
                 }
             case Entity.Type.Frog:
                 {
-                    CurrentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, FrogTexture, Collision1, Collision2, Collision3, Collision4);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, FrogTexture, Collision1, Collision2, Collision3, Collision4);
                     break;
                 }
             case Entity.Type.Bird:
                 {
-                    CurrentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn2, BirdTexture, Collision1, Collision2, Collision3, Collision4);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn2, BirdTexture, Collision1, Collision2, Collision3, Collision4);
                     break;
                 }
             case Entity.Type.Mouse:
                 {
-                    CurrentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, MouseTexture, Collision1, Collision2, Collision3, Collision4);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, MouseTexture, Collision1, Collision2, Collision3, Collision4);
                     break;
                 }
         }
-        CurrentAttacking = PlayerEntity;
-        CurrentDefending = CurrentEntity;
+        _currentAttacking = _playerEntity;
+        _currentDefending = _currentEntity;
     }
 
     public void StartNewGame()
     {
         Account account = Account.GetCurrentAccount();
         AccountStats accountStats = account.AccountStats;
-        PlayerEntity = new Entity(accountStats.Damage, accountStats.BlockChance, accountStats.CritChance, account.Name, accountStats.Hp, Entity.Type.Player);
-        PlayerEntity.SetUp(Slider1, HealthText1, Text1, this, Player, null, Collision1, Collision2, Collision3, Collision4);
+        _playerEntity = new Entity(accountStats.Damage, accountStats.BlockChance, accountStats.CritChance, account.Name, accountStats.Hp, Entity.Type.Player);
+        _playerEntity.SetUp(Slider1, HealthText1, Text1, this, Player, null, Collision1, Collision2, Collision3, Collision4);
         SetUpEnemies();
         SpawnNewEntity();
         //CurrentAttacking.StartMoving(CurrentDefending);
-        Cooldown = 0.5f;
-        progress = 0;
+        _cooldown = 0.5f;
+        _progress = 0;
         playing = true;
         HideButtons();
     }
@@ -202,7 +202,7 @@ public class Fighting : MonoBehaviour
     private void EndGame()
     {
         playing = false;
-        PlayerEntity.Hide();
+        _playerEntity.Hide();
         ShowButtons();
     }
     

@@ -6,23 +6,15 @@ using TMPro;
 
 public class CreateAccount : MonoBehaviour
 {
-    string _name;
-    public TMP_InputField _nameField;
-    public Button _createButton;
+    private string _name;
+    public TMP_InputField NameField;
+    public Button CreateButton;
 
 
     // Start is called before the first frame update
     void Start()
     {
 
-    }
-
-    Texture2D CreateTextureCopy(Texture2D original)
-    {
-        Texture2D copy = new Texture2D(original.width, original.height, TextureFormat.RGBA32, false);
-        copy.SetPixels(original.GetPixels());
-        copy.Apply();
-        return copy;
     }
 
     // Update is called once per frame
@@ -33,24 +25,24 @@ public class CreateAccount : MonoBehaviour
 
     public void InputChange()
     {
-        _name = _nameField.text.Replace("\u200B", "").Trim();
+        _name = NameField.text.Replace("\u200B", "").Trim();
     }
     
     public void CheckForButtonClickable()
     {
-        Color color = _createButton.GetComponentInChildren<TMP_Text>().color;
-        string userInput = _nameField.text.Replace("\u200B", "").Trim();
+        Color color = CreateButton.GetComponentInChildren<TMP_Text>().color;
+        string userInput = NameField.text.Replace("\u200B", "").Trim();
         if (string.IsNullOrEmpty(userInput))
         {
-            _createButton.interactable = false;
+            CreateButton.interactable = false;
             color.a = 0.5f;
         }
         else
         {
-            _createButton.interactable = true;
+            CreateButton.interactable = true;
             color.a = 1f;
         }
-        _createButton.GetComponentInChildren<TMP_Text>().color = color;
+        CreateButton.GetComponentInChildren<TMP_Text>().color = color;
     }
 
     public void CreateRandomCharacter()
@@ -67,6 +59,6 @@ public class CreateAccount : MonoBehaviour
     {
         
         _name = RandomName.GetNameFromList();
-        _nameField.text = _name;
+        NameField.text = _name;
     }
 }

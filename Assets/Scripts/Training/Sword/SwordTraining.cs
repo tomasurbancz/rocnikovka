@@ -7,80 +7,80 @@ using TMPro;
 public class SwordTraining : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Image _apple1;
-    public Image _apple2;
-    public Image _apple3;
-    public Image _star;
+    public Image Apple1;
+    public Image Apple2;
+    public Image Apple3;
+    public Image Star;
 
-    public Image _apple1Collision;
-    public Image _apple2Collision;
-    public Image _apple3Collision;
-    public Image _characterCollision;
-    public Image _starCollision;
-    public Image _starDespawnCollision;
+    public Image Apple1Collision;
+    public Image Apple2Collision;
+    public Image Apple3Collision;
+    public Image CharacterCollision;
+    public Image StarCollision;
+    public Image StarDespawnCollision;
 
-    public Image _character;
-    private Animator Animator;
+    public Image Character;
+    private Animator _animator;
         
     private List<SwordTrainingObject> _trainingObjects = new List<SwordTrainingObject>();
     private int _maxTrainingObjects = 5;
     private float _objectSpawnCooldown = 0.25f;
 
-    public TMP_Text _scoreText;
+    public TMP_Text ScoreText;
     private int _score;
     
     private float _speed = 2.0f;
     
     private KeyCode _lastKey = KeyCode.None;
-    private bool IsNewKey = false;
-    private float AnimationTime = 0.15f;
+    private bool _isNewKey = false;
+    private float _animationTime = 0.15f;
 
     void Start()
     {
-        Animator = _character.GetComponent<Animator>();
+        _animator = Character.GetComponent<Animator>();
     }
 
     private void SpawnNewObject()
     {
         int random = Random.Range(0, 7);
         if(random <= 1)
-            _trainingObjects.Add(SwordTrainingObject.Create(_apple1, _apple1Collision, (int) KeyCode.W, SwordTrainingObject.TrainingObjectType.Apple));
+            _trainingObjects.Add(SwordTrainingObject.Create(Apple1, Apple1Collision, (int) KeyCode.W, SwordTrainingObject.TrainingObjectType.Apple));
         else if (random <= 3)
-            _trainingObjects.Add(SwordTrainingObject.Create(_apple2, _apple2Collision, (int)KeyCode.D, SwordTrainingObject.TrainingObjectType.Apple));
+            _trainingObjects.Add(SwordTrainingObject.Create(Apple2, Apple2Collision, (int)KeyCode.D, SwordTrainingObject.TrainingObjectType.Apple));
         else if (random <= 5)
-            _trainingObjects.Add(SwordTrainingObject.Create(_apple3, _apple3Collision, (int)KeyCode.S, SwordTrainingObject.TrainingObjectType.Apple));
+            _trainingObjects.Add(SwordTrainingObject.Create(Apple3, Apple3Collision, (int)KeyCode.S, SwordTrainingObject.TrainingObjectType.Apple));
         else
-            _trainingObjects.Add(SwordTrainingObject.Create(_star, _starCollision, (int)KeyCode.A, SwordTrainingObject.TrainingObjectType.Star));
+            _trainingObjects.Add(SwordTrainingObject.Create(Star, StarCollision, (int)KeyCode.A, SwordTrainingObject.TrainingObjectType.Star));
     }
 
     private void UpdateObjectLocation()
     {
         foreach(SwordTrainingObject trainingObject in _trainingObjects)
         {
-            if (trainingObject._trainingObjectType.Equals(SwordTrainingObject.TrainingObjectType.Apple))
-                trainingObject._image.transform.position = new Vector2(trainingObject._image.transform.position.x - (_speed * Time.deltaTime), trainingObject._image.transform.position.y);
+            if (trainingObject.TrainingObject.Equals(SwordTrainingObject.TrainingObjectType.Apple))
+                trainingObject.Image.transform.position = new Vector2(trainingObject.Image.transform.position.x - (_speed * Time.deltaTime), trainingObject.Image.transform.position.y);
             else
-                trainingObject._image.transform.position = new Vector2(trainingObject._image.transform.position.x, trainingObject._image.transform.position.y - (_speed * Time.deltaTime));
+                trainingObject.Image.transform.position = new Vector2(trainingObject.Image.transform.position.x, trainingObject.Image.transform.position.y - (_speed * Time.deltaTime));
         }
     }
 
     private void CheckForAnimations()
     {
         string animationName = "";
-        if (Input.GetKeyDown(_lastKey) && IsNewKey)
+        if (Input.GetKeyDown(_lastKey) && _isNewKey)
         {
             if (_lastKey == KeyCode.A)
             {
                 animationName = "Player_Left";
             }
-            IsNewKey = false;
-            AnimationTime = 0.15f;
+            _isNewKey = false;
+            _animationTime = 0.15f;
         }
-        if (!animationName.Equals("") || AnimationTime < 0)
+        if (!animationName.Equals("") || _animationTime < 0)
         {
             Debug.Log("NEW ANIMATION " + "STAND " + animationName);
-            Animator.Play("Player_Stand", 0, 0f);
-            AnimationTime = 0.5f;
+            _animator.Play("Player_Stand", 0, 0f);
+            _animationTime = 0.5f;
         }
         if (!animationName.Equals(""))
         {
@@ -94,31 +94,31 @@ public class SwordTraining : MonoBehaviour
         List<SwordTrainingObject> trainingObjectsCopy = new List<SwordTrainingObject>(_trainingObjects);
         foreach (SwordTrainingObject trainingObject in trainingObjectsCopy)
         {
-            if (AreImagesOverlapping(trainingObject._image, _characterCollision))
+            if (AreImagesOverlapping(trainingObject.Image, CharacterCollision))
             {
                 _trainingObjects.Remove(trainingObject);
-                Destroy(trainingObject._image);
+                Destroy(trainingObject.Image);
                 Destroy(trainingObject);
                 StartNewGame();
                 Debug.Log("Collision with character");
             }
-            else if (AreImagesOverlapping(trainingObject._image, _starDespawnCollision))
+            else if (AreImagesOverlapping(trainingObject.Image, StarDespawnCollision))
             {
                 _trainingObjects.Remove(trainingObject);
-                Destroy(trainingObject._image);
+                Destroy(trainingObject.Image);
                 Destroy(trainingObject);
                 Debug.Log("Star despawning");
             }
-            else if (AreImagesOverlapping(trainingObject._image, trainingObject._collision))
+            else if (AreImagesOverlapping(trainingObject.Image, trainingObject.Collision))
             {
                 if (Input.GetKeyDown(_lastKey))
                 {
-                    if ((int)_lastKey == trainingObject._collisionKey)
+                    if ((int)_lastKey == trainingObject.CollisionKey)
                     {
                         _trainingObjects.Remove(trainingObject);
-                        Destroy(trainingObject._image);
+                        Destroy(trainingObject.Image);
                         Destroy(trainingObject);
-                        if (trainingObject._trainingObjectType.Equals(SwordTrainingObject.TrainingObjectType.Apple))
+                        if (trainingObject.TrainingObject.Equals(SwordTrainingObject.TrainingObjectType.Apple))
                             _score++;
                         else _score += 5;
                         UpdateScoreText();
@@ -159,7 +159,7 @@ public class SwordTraining : MonoBehaviour
             {
                 if (Input.GetKeyDown(key))
                 {
-                    IsNewKey = true;
+                    _isNewKey = true;
                     _lastKey = key;
                     break;
                 }
@@ -184,7 +184,7 @@ public class SwordTraining : MonoBehaviour
 
     private void UpdateScoreText()
     {
-        _scoreText.text = "Score: " + _score;
+        ScoreText.text = "Score: " + _score;
     }
 
     // Update is called once per frame
@@ -196,7 +196,7 @@ public class SwordTraining : MonoBehaviour
             _objectSpawnCooldown = 0.25f;
         }
         _objectSpawnCooldown -= Time.deltaTime;
-        AnimationTime -= Time.deltaTime;
+        _animationTime -= Time.deltaTime;
         ChangeSpeed();
         CheckForKeys();
         UpdateObjectLocation();

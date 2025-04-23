@@ -17,7 +17,6 @@ public class AccountStats
         Hp = hp;
         BlockChance = blockChance;
         CritChance = critChance;
-        Coins = 
         Coins = coins;
     }
 }

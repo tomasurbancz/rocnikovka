@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Image _mainMenuImage;
+    public Image MainMenuImage;
     private Vector2 _size;
     private Vector2 _currentPosition;
     private Vector2 _direction;
@@ -52,7 +52,7 @@ public class MainMenu : MonoBehaviour
     private void Move()
     {
         _currentPosition = new Vector2(_currentPosition.x + (_direction.x/10 * Time.deltaTime), _currentPosition.y + (_direction.y/10 * Time.deltaTime));
-        _mainMenuImage.transform.position = _currentPosition;
+        MainMenuImage.transform.position = _currentPosition;
     }
 
     private void CheckForBorderCollision()

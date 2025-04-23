@@ -603,7 +603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 432, y: -97.837006}
+  m_AnchoredPosition: {x: 432, y: -97.836914}
   m_SizeDelta: {x: 247.2, y: 56.43}
   m_Pivot: {x: 0.5000001, y: 0.500001}
 --- !u!1 &639452969
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65beae5fc5aad0e4fa3f973747f187f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 313692963}
+  Character: {fileID: 313692963}
 --- !u!114 &1545592641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1530,14 +1530,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5645c6c3d9e6e24c96af4b26c6fbb2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _apple: {fileID: 1610336035}
-  _star: {fileID: 1338559853}
-  _characterCollision: {fileID: 1636875295}
-  _armor: {fileID: 1545592641}
+  Apple: {fileID: 1610336035}
+  Star: {fileID: 1338559853}
+  CharacterCollision: {fileID: 1636875295}
+  Armor: {fileID: 1545592641}
   Slider: {fileID: 42952325}
   Combo: {fileID: 526991657}
-  _missionHeaderText: {fileID: 1879611485}
-  _missionInfoText: {fileID: 1690091577}
+  MissionHeaderText: {fileID: 1879611485}
+  MissionInfoText: {fileID: 1690091577}
 --- !u!1 &1879611483
 GameObject:
   m_ObjectHideFlags: 0
