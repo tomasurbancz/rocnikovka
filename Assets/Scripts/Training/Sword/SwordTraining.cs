@@ -26,7 +26,9 @@ public class SwordTraining : MonoBehaviour
     private int _maxTrainingObjects = 5;
     private float _objectSpawnCooldown = 0.25f;
 
-    public TMP_Text ScoreText;
+    public Slider Slider;
+    public TMP_Text Combo;
+    private ScoreSlider _scoreSlider;
     private int _score;
     
     private float _speed = 2.0f;
@@ -35,8 +37,14 @@ public class SwordTraining : MonoBehaviour
     private bool _isNewKey = false;
     private float _animationTime = 0.15f;
 
+    private Missions _missions;
+    public TMP_Text MissionHeaderText;
+    public TMP_Text MissionInfoText;
+
     void Start()
     {
+        _missions = new Missions(new SwordTrainingMissions(), 0, MissionHeaderText, MissionInfoText, new MissionRewarder(MissionRewarder.Type.Sword));
+        _scoreSlider = new ScoreSlider(Slider, Combo, 0, 10);
         _animator = Character.GetComponent<Animator>();
     }
 
@@ -119,9 +127,13 @@ public class SwordTraining : MonoBehaviour
                         Destroy(trainingObject.Image);
                         Destroy(trainingObject);
                         if (trainingObject.TrainingObject.Equals(SwordTrainingObject.TrainingObjectType.Apple))
+                        {
                             _score++;
+                            _missions.UpdateMission(MissionType.APPLES, 1);
+                        }
                         else _score += 5;
-                        UpdateScoreText();
+                        _missions.UpdateMission(MissionType.SCORE, _score, true);
+                        UpdateScore();
                         Debug.Log("Collision with apple");
                     }
                 }
@@ -170,8 +182,9 @@ public class SwordTraining : MonoBehaviour
     private void StartNewGame()
     {
         _score = 0;
+        UpdateScore();
         _speed = 2f;
-        UpdateScoreText();
+        _missions.ResetIfNotType(MissionType.STARS);
     }
 
     private void ChangeSpeed()
@@ -182,9 +195,17 @@ public class SwordTraining : MonoBehaviour
         _maxTrainingObjects = maxTrainingObjects;
     }
 
-    private void UpdateScoreText()
+    private void UpdateScore()
     {
-        ScoreText.text = "Score: " + _score;
+        _scoreSlider.UpdateProgress(_score);
+        if (_scoreSlider.CompletedCurrentGoal)
+        {
+            _scoreSlider.ChangeGoal(10);
+            Account account = Account.GetCurrentAccount();
+            account.AccountStats.Hp += 7;
+            account.SaveData();
+            _scoreSlider.UpdateProgress(_score);
+        }
     }
 
     // Update is called once per frame
