@@ -37,6 +37,7 @@ public class ScoreSlider
     private void UpdateBar()
     {
         Slider.value = ((float)(_progress - _lastProgress) / (NextProgress - _lastProgress));
-        if(_progress != 0) ProgressText.text = "x" + _progress;
+        if (_progress != 0) ProgressText.text = "x" + _progress;
+        else ProgressText.text = "";
     }
 }
