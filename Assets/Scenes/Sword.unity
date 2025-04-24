@@ -1609,18 +1609,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747fbd652eb76a64f9a46fdfe07677ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _apple1: {fileID: 1610336035}
-  _apple2: {fileID: 1140430029}
-  _apple3: {fileID: 1187383187}
-  _star: {fileID: 1338559853}
-  _apple1Collision: {fileID: 647018175}
-  _apple2Collision: {fileID: 1892878562}
-  _apple3Collision: {fileID: 169798846}
-  _characterCollision: {fileID: 1636875295}
-  _starCollision: {fileID: 700713753}
-  _starDespawnCollision: {fileID: 802372719}
-  _character: {fileID: 654221192}
-  _scoreText: {fileID: 526991657}
+  Apple1: {fileID: 1610336035}
+  Apple2: {fileID: 1140430029}
+  Apple3: {fileID: 1187383187}
+  Star: {fileID: 1338559853}
+  Apple1Collision: {fileID: 647018175}
+  Apple2Collision: {fileID: 1892878562}
+  Apple3Collision: {fileID: 169798846}
+  CharacterCollision: {fileID: 1636875295}
+  StarCollision: {fileID: 700713753}
+  StarDespawnCollision: {fileID: 802372719}
+  Character: {fileID: 654221192}
+  ScoreText: {fileID: 526991657}
 --- !u!4 &1786612756
 Transform:
   m_ObjectHideFlags: 0

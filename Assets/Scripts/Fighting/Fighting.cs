@@ -175,11 +175,11 @@ public class Fighting : MonoBehaviour
         AccountStats accountStats = account.AccountStats;
         _playerEntity = new Entity(accountStats.Damage, accountStats.BlockChance, accountStats.CritChance, account.Name, accountStats.Hp, Entity.Type.Player);
         _playerEntity.SetUp(Slider1, HealthText1, Text1, this, Player, null, Collision1, Collision2, Collision3, Collision4);
+        _progress = 0;
         SetUpEnemies();
         SpawnNewEntity();
         //CurrentAttacking.StartMoving(CurrentDefending);
         _cooldown = 0.5f;
-        _progress = 0;
         playing = true;
         HideButtons();
     }
@@ -188,15 +188,19 @@ public class Fighting : MonoBehaviour
     {
         BackButton.image.color = BackButton.image.color.GetVisibleColor();
         BackText.color = BackText.color.GetVisibleColor();
+        BackButton.interactable = true;
         RetryButton.image.color = RetryButton.image.color.GetVisibleColor();
         RetryText.color = RetryText.color.GetVisibleColor();
+        RetryButton.interactable = true;
     }
     private void HideButtons()
     {
         BackButton.image.color = BackButton.image.color.GetTransparentColor();
         BackText.color = BackText.color.GetTransparentColor();
+        BackButton.interactable = false;
         RetryButton.image.color = RetryButton.image.color.GetTransparentColor();
         RetryText.color = RetryText.color.GetTransparentColor();
+        RetryButton.interactable = false;
     }
 
     private void EndGame()
