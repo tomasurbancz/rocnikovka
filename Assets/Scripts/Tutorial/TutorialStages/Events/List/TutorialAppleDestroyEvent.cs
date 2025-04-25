@@ -5,10 +5,11 @@ using UnityEngine;
 public class TutorialAppleDestroyEvent : TutorialEvent
 {
     private bool _finished;
+    private TutorialTextEvent _tutorialTextEvent;
 
     public TutorialAppleDestroyEvent()
     {
-
+        _tutorialTextEvent = new TutorialTextEvent(TutorialSceneSetup.CurrentScene.Text, "Use the W, S, D keys to break apples. Use the A key to catch stars.");
     }
 
     public override void Update()
@@ -17,6 +18,7 @@ public class TutorialAppleDestroyEvent : TutorialEvent
         {
             if (SwordTraining.RemainingTutorialApples <= 0) _finished = true;
         }
+        _tutorialTextEvent.Update();
     }
 
     public override bool IsCompleted()
@@ -26,7 +28,7 @@ public class TutorialAppleDestroyEvent : TutorialEvent
 
     public override bool IsPaperNeeded()
     {
-        return false;
+        return true;
     }
 
     public override void Click(string objectName)

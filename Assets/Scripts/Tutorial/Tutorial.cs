@@ -45,8 +45,7 @@ public class Tutorial : MonoBehaviour
         _tutorialStages.Add(new ClickSwordButtonTutorial());
         _tutorialStages.Add(new TeleportToSwordTrainingTutorial());
 
-        _tutorialStages.Add(new SwordTrainingTextTutorial());
-        _tutorialStages.Add(new SwordTrainingTextTutorial());
+        _tutorialStages.Add(new SwordDestroyApplesTutorial());
         _tutorialStages.Add(new SwordDestroyApplesTutorial());
         _tutorialStages.Add(new TeleportToMainMap());
 
