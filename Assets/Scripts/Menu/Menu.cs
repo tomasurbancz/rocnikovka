@@ -19,7 +19,7 @@ public class Menu : MonoBehaviour
         
     }
 
-    public void ChangeScene(string scene)
+    public static void ChangeScene(string scene)
     {
         Debug.Log(Tutorial.CompletedTutorial);
         if(Tutorial.CompletedTutorial) SceneManager.LoadScene(scene);

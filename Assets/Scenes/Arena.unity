@@ -1399,6 +1399,7 @@ GameObject:
   - component: {fileID: 1571549294}
   - component: {fileID: 1571549296}
   - component: {fileID: 1571549295}
+  - component: {fileID: 1571549297}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1489,6 +1490,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text: {fileID: 455264085}
   Paper: {fileID: 1516786306}
+--- !u!114 &1571549297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571549290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 855cab432e30ea546a1d9a80a1c9d468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: Map
 --- !u!1 &1743752176
 GameObject:
   m_ObjectHideFlags: 0

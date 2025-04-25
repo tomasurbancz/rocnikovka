@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 507468270}
   - component: {fileID: 507468269}
   - component: {fileID: 507468268}
+  - component: {fileID: 507468271}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -326,6 +327,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &507468271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507468267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 855cab432e30ea546a1d9a80a1c9d468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: Map
 --- !u!1 &590659262
 GameObject:
   m_ObjectHideFlags: 0
