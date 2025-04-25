@@ -41,18 +41,24 @@ public class Fighting : MonoBehaviour
     private Entity _currentAttacking;
     private Entity _currentDefending;
 
+
     private bool playing = true;
+
+    private bool _firstGame = true;
+    public static bool PlayerDied;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartNewGame();
+        PlayerDied = false;
     }
 
     private void SetUpEnemies()
     {
         int level = Saver.GetInt("FightingLevel");
-        switch(level)
+        Debug.Log("FIGHTING LEVEL: " + level);
+        switch (level)
         {
             case 1:
                 {
@@ -171,17 +177,21 @@ public class Fighting : MonoBehaviour
 
     public void StartNewGame()
     {
-        Account account = Account.GetCurrentAccount();
-        AccountStats accountStats = account.AccountStats;
-        _playerEntity = new Entity(accountStats.Damage, accountStats.BlockChance, accountStats.CritChance, account.Name, accountStats.Hp, Entity.Type.Player);
-        _playerEntity.SetUp(Slider1, HealthText1, Text1, this, Player, null, Collision1, Collision2, Collision3, Collision4);
-        _progress = 0;
-        SetUpEnemies();
-        SpawnNewEntity();
-        //CurrentAttacking.StartMoving(CurrentDefending);
-        _cooldown = 0.5f;
-        playing = true;
-        HideButtons();
+        if (_firstGame || Tutorial.CompletedTutorial)
+        {
+            Account account = Account.GetCurrentAccount();
+            AccountStats accountStats = account.AccountStats;
+            _playerEntity = new Entity(accountStats.Damage, accountStats.BlockChance, accountStats.CritChance, account.Name, accountStats.Hp, Entity.Type.Player);
+            _playerEntity.SetUp(Slider1, HealthText1, Text1, this, Player, null, Collision1, Collision2, Collision3, Collision4);
+            _progress = 0;
+            SetUpEnemies();
+            SpawnNewEntity();
+            //CurrentAttacking.StartMoving(CurrentDefending);
+            _cooldown = 0.5f;
+            playing = true;
+            _firstGame = false;
+            HideButtons();
+        }
     }
 
     private void ShowButtons()
@@ -208,6 +218,7 @@ public class Fighting : MonoBehaviour
         playing = false;
         _playerEntity.Hide();
         ShowButtons();
+        PlayerDied = true;
     }
     
 }

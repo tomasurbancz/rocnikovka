@@ -41,6 +41,8 @@ public class SwordTraining : MonoBehaviour
     public TMP_Text MissionHeaderText;
     public TMP_Text MissionInfoText;
 
+    public static int RemainingTutorialApples = 5;
+
     void Start()
     {
         _missions = new Missions(new SwordTrainingMissions(), 0, MissionHeaderText, MissionInfoText, new MissionRewarder(MissionRewarder.Type.Sword));
@@ -130,6 +132,7 @@ public class SwordTraining : MonoBehaviour
                         {
                             _score++;
                             _missions.UpdateMission(MissionType.APPLES, 1);
+                            RemainingTutorialApples--;
                         }
                         else _score += 5;
                         _missions.UpdateMission(MissionType.SCORE, _score, true);

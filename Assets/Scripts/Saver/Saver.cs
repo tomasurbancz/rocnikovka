@@ -19,6 +19,12 @@ public static class Saver
         PlayerPrefs.SetString(name, val);
     }
 
+    public static void SaveBool(string name, bool val)
+    {
+        string toSave = val ? "True" : "False";
+        PlayerPrefs.SetString(name, toSave);
+    }
+
     public static string GetString(string name)
     {
         return PlayerPrefs.GetString(name);
@@ -32,6 +38,13 @@ public static class Saver
     public static float GetFloat(string name)
     {
         return PlayerPrefs.GetFloat(name);
+    }
+
+    public static bool GetBool(string name)
+    {
+        bool value = false;
+        if (GetString(name).Equals("True")) value = true;
+        return value;
     }
 
     public static bool HasKey(string name)

@@ -53,6 +53,8 @@ public class CreateAccount : MonoBehaviour
     public void Create()
     {
         new LocalAccount(_name);
+        Saver.SaveBool("LocalTutorialCompleted", false);
+        Saver.Save();
     }
 
     private void UpdateName()
