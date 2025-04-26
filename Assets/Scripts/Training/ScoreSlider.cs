@@ -30,6 +30,7 @@ public class ScoreSlider
     public void UpdateProgress(int progress)
     {
         _progress = progress;
+        if (progress == 0) _lastProgress = 0;
         CompletedCurrentGoal = _progress >= NextProgress;
         UpdateBar();
     }
