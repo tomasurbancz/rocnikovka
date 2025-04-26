@@ -1513,6 +1513,7 @@ GameObject:
   - component: {fileID: 368421302}
   - component: {fileID: 368421303}
   - component: {fileID: 368421304}
+  - component: {fileID: 368421305}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1589,6 +1590,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameField: {fileID: 441997496}
   CreateButton: {fileID: 1686001583}
+--- !u!114 &368421305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368421299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c118e3a8003114e87509a2fb941e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &399377242
 GameObject:
   m_ObjectHideFlags: 0
@@ -4119,8 +4132,8 @@ RectTransform:
   - {fileID: 1054857323}
   - {fileID: 1152414680}
   - {fileID: 1842717056}
-  - {fileID: 1678159331}
   - {fileID: 1153058609}
+  - {fileID: 1678159331}
   - {fileID: 820711955}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4801,9 +4814,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 368421303}
-        m_TargetAssemblyTypeName: StartGameMenu, Assembly-CSharp
-        m_MethodName: MoveToCenter
+      - m_Target: {fileID: 368421305}
+        m_TargetAssemblyTypeName: ExitGame, Assembly-CSharp
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
