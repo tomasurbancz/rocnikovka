@@ -11,12 +11,18 @@ public class Missions
     private TMP_Text _headerText;
     private TMP_Text _infoText;
     private MissionRewarder _missionRewarder;
+    private string _textInSaver;
 
-    public Missions(MissionList missionList, int currentMissionIndex, TMP_Text headerText, TMP_Text infoText, MissionRewarder missionRewarder)
+    public Missions(MissionList missionList, string textInSaver, TMP_Text headerText, TMP_Text infoText, MissionRewarder missionRewarder)
     {
         _missionList = missionList;
+        _textInSaver = textInSaver;
+        int currentMissionIndex = 0;
+        Account account = Account.GetCurrentAccount();
+        if (_textInSaver.Contains("Armor")) currentMissionIndex = account.AccountMissions.Armor;
+        else currentMissionIndex = account.AccountMissions.Sword;
         _currentMissionIndex = currentMissionIndex;
-        _currentMission = _missionList.GetMissions()[_currentMissionIndex];
+        _currentMission = _missionList.GetMissions()[_currentMissionIndex - 1];
         _headerText = headerText;
         _infoText = infoText;
         _missionRewarder = missionRewarder;
@@ -54,7 +60,11 @@ public class Missions
     private void ChangeMission()
     {
         _currentMissionIndex++;
-        _currentMission = _missionList.GetMissions()[_currentMissionIndex];
+        Account account = Account.GetCurrentAccount();
+        if (_textInSaver.Contains("Armor")) account.AccountMissions.Armor = _currentMissionIndex;
+        else account.AccountMissions.Sword = _currentMissionIndex;
+        account.SaveData();
+        _currentMission = _missionList.GetMissions()[_currentMissionIndex - 1];
     }
 
     private void UpdateText()

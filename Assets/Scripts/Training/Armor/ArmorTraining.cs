@@ -31,7 +31,7 @@ public class ArmorTraining : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _missions = new Missions(new ArmorMissions(), 0, MissionHeaderText, MissionInfoText, new MissionRewarder(MissionRewarder.Type.Armor));
+        _missions = new Missions(new ArmorMissions(), "LocalArmorMission", MissionHeaderText, MissionInfoText, new MissionRewarder(MissionRewarder.Type.Armor));
         _scoreSlider = new ScoreSlider(Slider, Combo, 0, 10);
     }
 

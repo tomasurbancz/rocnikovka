@@ -45,7 +45,7 @@ public class SwordTraining : MonoBehaviour
 
     void Start()
     {
-        _missions = new Missions(new SwordTrainingMissions(), 0, MissionHeaderText, MissionInfoText, new MissionRewarder(MissionRewarder.Type.Sword));
+        _missions = new Missions(new SwordTrainingMissions(), "LocalSwordMission", MissionHeaderText, MissionInfoText, new MissionRewarder(MissionRewarder.Type.Sword));
         _scoreSlider = new ScoreSlider(Slider, Combo, 0, 10);
         _animator = Character.GetComponent<Animator>();
     }
