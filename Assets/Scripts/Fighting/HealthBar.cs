@@ -26,6 +26,6 @@ public class HealthBar
     private void UpdateHealthBar()
     {
         Slider.value = ((float) HP / MaxHP);
-        HealthText.text = HP + "/" + MaxHP;
+        HealthText.text = Mathf.Max(0, HP) + "/" + MaxHP;
     }
 }
