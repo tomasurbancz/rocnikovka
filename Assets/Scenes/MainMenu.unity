@@ -2818,8 +2818,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClipNamesSetUp:
   - button
+  - keyboard
   ClipsSetUp:
   - {fileID: 8300000, guid: d6f07dd1deddc914898931e30b99ed36, type: 3}
+  - {fileID: 8300000, guid: d0b1ee5c50e6d674a9f9e753283d8441, type: 3}
 --- !u!4 &898308687
 Transform:
   m_ObjectHideFlags: 0
