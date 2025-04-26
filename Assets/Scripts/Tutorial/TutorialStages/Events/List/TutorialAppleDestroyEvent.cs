@@ -9,7 +9,7 @@ public class TutorialAppleDestroyEvent : TutorialEvent
 
     public TutorialAppleDestroyEvent()
     {
-        _tutorialTextEvent = new TutorialTextEvent(TutorialSceneSetup.CurrentScene.Text, "Use the W, S, D keys to break apples. Use the A key to catch stars.");
+        _tutorialTextEvent = new TutorialTextEvent(TutorialSceneSetup.CurrentScene.Text, "Use the W, S, D keys to break apples. Use the A key to catch stars.", false);
     }
 
     public override void Update()
@@ -39,5 +39,9 @@ public class TutorialAppleDestroyEvent : TutorialEvent
     public override bool InstantlyMoveToNext()
     {
         return IsCompleted();
+    }
+
+    public override void DeleteChanges()
+    {
     }
 }

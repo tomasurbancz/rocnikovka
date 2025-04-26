@@ -33,4 +33,9 @@ public abstract class TutorialStage
     {
         return _tutorialEvent.InstantlyMoveToNext();
     }
+
+    public void DeleteChanges()
+    {
+        _tutorialEvent.DeleteChanges();
+    }
 }

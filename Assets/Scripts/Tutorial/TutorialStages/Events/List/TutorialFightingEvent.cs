@@ -38,4 +38,8 @@ public class TutorialFightingEvent : TutorialEvent
     {
         return IsCompleted();
     }
+
+    public override void DeleteChanges()
+    {
+    }
 }

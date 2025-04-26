@@ -2744,6 +2744,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text: {fileID: 1544029837}
   Paper: {fileID: 2029831429}
+  Arrow: []
+  Background: {fileID: 1215996490}
 --- !u!114 &1786612760
 MonoBehaviour:
   m_ObjectHideFlags: 0

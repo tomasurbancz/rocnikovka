@@ -9,4 +9,5 @@ public abstract class TutorialEvent
     public abstract bool IsCompleted();
     public abstract bool InstantlyMoveToNext();
     public abstract void Click(string objectName);
+    public abstract void DeleteChanges();
 }

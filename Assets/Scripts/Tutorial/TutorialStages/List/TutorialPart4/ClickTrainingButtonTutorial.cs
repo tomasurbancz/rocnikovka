@@ -6,6 +6,6 @@ public class ClickTrainingButtonTutorial : TutorialStage
 {
     public ClickTrainingButtonTutorial()
     {
-        _tutorialEvent = new TutorialButtonClickEvent(TutorialSceneSetup.CurrentScene.Text, "Training");
+        _tutorialEvent = new TutorialButtonClickEvent(TutorialSceneSetup.CurrentScene.Text, "Training", "", 1);
     }
 }

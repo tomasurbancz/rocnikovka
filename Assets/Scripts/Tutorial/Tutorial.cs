@@ -69,6 +69,7 @@ public class Tutorial : MonoBehaviour
                 _currentTutorialStage.Update();
                 if(_currentTutorialStage.InstantlyMoveToNext())
                 {
+                    _currentTutorialStage.DeleteChanges();
                     NewStage();
                 }
             }
@@ -87,6 +88,7 @@ public class Tutorial : MonoBehaviour
             {
                 if (_currentTutorialStage.IsCompleted())
                 {
+                    _currentTutorialStage.DeleteChanges();
                     NewStage();
                 }
             }

@@ -40,4 +40,8 @@ public class TutorialChangeSceneEvent : TutorialEvent
     {
         return IsCompleted();
     }
+
+    public override void DeleteChanges()
+    {
+    }
 }

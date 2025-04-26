@@ -8,6 +8,8 @@ public class TutorialSceneSetup : MonoBehaviour
 {
     public TMP_Text Text;
     public Image Paper;
+    public List<Image> Arrow;
+    public Image Background;
     public static TutorialSceneSetup CurrentScene;
 
     // Start is called before the first frame update
