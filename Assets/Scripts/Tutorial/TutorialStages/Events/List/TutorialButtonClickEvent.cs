@@ -9,9 +9,11 @@ public class TutorialButtonClickEvent : TutorialEvent
     private string _objectName;
     private TutorialTextEvent _tutorialTextEvent;
 
-    public TutorialButtonClickEvent(TMP_Text text, string objectName)
+    public TutorialButtonClickEvent(TMP_Text text, string objectName, string overwrite = "")
     {
-        _tutorialTextEvent = new TutorialTextEvent(text, $"Continue by pressing the {objectName} button");
+        string textToWrite = overwrite;
+        if (textToWrite.Equals("")) textToWrite = objectName;
+        _tutorialTextEvent = new TutorialTextEvent(text, $"Continue by pressing the {textToWrite} button");
         _objectName = objectName;
     }
 
@@ -35,6 +37,7 @@ public class TutorialButtonClickEvent : TutorialEvent
 
     public override void Click(string objectName)
     {
+        Debug.Log("TEST: " + _objectName + " " + objectName);
         if(objectName.Equals(_objectName))
         {
             _completed = true;

@@ -6,6 +6,6 @@ public class ClickRetryTutorial : TutorialStage
 {
     public ClickRetryTutorial()
     {
-        _tutorialEvent = new TutorialButtonClickEvent(TutorialSceneSetup.CurrentScene.Text, "Try Again");
+        _tutorialEvent = new TutorialButtonClickEvent(TutorialSceneSetup.CurrentScene.Text, "GoToMap", "Map");
     }
 }

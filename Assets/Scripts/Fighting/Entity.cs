@@ -89,7 +89,7 @@ public class Entity
         {
             if(_direction.x == 1)
             {
-                _currentPosition.x += 0.05f;
+                _currentPosition.x += 15f * Time.deltaTime;
                 if(AreImagesOverlapping(_image, Collision4))
                 {
                     Attack();
@@ -98,7 +98,7 @@ public class Entity
             }
             else if (_direction.x == -1)
             {
-                _currentPosition.x -= 0.05f;
+                _currentPosition.x -= 15f * Time.deltaTime;
                 if (AreImagesOverlapping(_image, Collision1))
                 {
                     _direction.x = 0;
@@ -109,7 +109,7 @@ public class Entity
         {
             if (_direction.x == 1)
             {
-                _currentPosition.x -= 0.05f;
+                _currentPosition.x -= 15f * Time.deltaTime;
                 if (AreImagesOverlapping(_image, Collision3))
                 {
                     Attack();
@@ -118,7 +118,7 @@ public class Entity
             }
             else if (_direction.x == -1)
             {
-                _currentPosition.x += 0.05f;
+                _currentPosition.x += 15f * Time.deltaTime;
                 if (AreImagesOverlapping(_image, Collision2))
                 {
                     _direction.x = 0;

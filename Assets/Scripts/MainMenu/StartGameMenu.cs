@@ -39,7 +39,7 @@ public class StartGameMenu : MonoBehaviour
 
     private void Move()
     {
-        Vector2 direction = new Vector2(0, Mathf.Max(Mathf.Min(_nextPosition.y - _currentPosition.y, 0.075f), -0.075f));
+        Vector2 direction = new Vector2(0, Mathf.Max(Mathf.Min(_nextPosition.y - _currentPosition.y, 20f * Time.deltaTime), -20f * Time.deltaTime));
         _currentPosition = new Vector2(0, _currentPosition.y + direction.y);
         Menu.transform.position = _currentPosition;
     }
