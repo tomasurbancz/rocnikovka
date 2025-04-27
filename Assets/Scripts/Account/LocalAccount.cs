@@ -9,7 +9,8 @@ public class LocalAccount : Account
         new TrainingStats(TrainingStats.Type.Armor, 0, 1),
         new TrainingStats(TrainingStats.Type.Sword, 0, 1),
         new AccountStats(2, 40, 1.5f, 3.5f, 0),
-        new AccountMissions(1, 1)
+        new AccountMissions(1, 1),
+        new AccountUpgrades(0, 0)
         )
     {
 
@@ -20,7 +21,8 @@ public class LocalAccount : Account
         new TrainingStats(TrainingStats.Type.Armor, Saver.GetInt("LocalTrainingArmorMax"), Saver.GetInt("LocalTrainingArmorMissionId")),
         new TrainingStats(TrainingStats.Type.Sword, Saver.GetInt("LocalTrainingSwordMax"), Saver.GetInt("LocalTrainingSwordMissionId")),
         new AccountStats(Saver.GetInt("LocalDamage"), Saver.GetInt("LocalHp"), Saver.GetFloat("LocalBlockChance"), Saver.GetFloat("LocalCritChance"), Saver.GetInt("LocalCoins")),
-        new AccountMissions(Saver.GetInt("LocalSwordMission"), Saver.GetInt("LocalArmorMission"))
+        new AccountMissions(Saver.GetInt("LocalSwordMission"), Saver.GetInt("LocalArmorMission")),
+        new AccountUpgrades(Saver.GetInt("LocalSwordUpgrade"), Saver.GetInt("LocalArmorUpgrade"))
         )
     {
 
@@ -41,6 +43,8 @@ public class LocalAccount : Account
         Saver.SaveFloat("LocalCoins", AccountStats.Coins);
         Saver.SaveInt("LocalSwordMission", AccountMissions.Sword);
         Saver.SaveInt("LocalArmorMission", AccountMissions.Armor);
+        Saver.SaveInt("LocalSwordUpgrade", AccountUpgrades.Sword);
+        Saver.SaveInt("LocalArmorUpgrade", AccountUpgrades.Armor);
         Saver.SaveString("LoginType", "Local");
         Saver.Save();
     }

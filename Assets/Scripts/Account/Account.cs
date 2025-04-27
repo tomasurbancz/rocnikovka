@@ -10,8 +10,9 @@ public abstract class Account
     public TrainingStats SwordStats;
     public AccountStats AccountStats;
     public AccountMissions AccountMissions;
+    public AccountUpgrades AccountUpgrades;
 
-    public Account(string name, int arenaLevel, TrainingStats armorStats, TrainingStats swordStats, AccountStats accountStats, AccountMissions accountMissions)
+    public Account(string name, int arenaLevel, TrainingStats armorStats, TrainingStats swordStats, AccountStats accountStats, AccountMissions accountMissions, AccountUpgrades accountUpgrades)
     {
         Name = name;
         ArenaLevel = arenaLevel;
@@ -19,6 +20,7 @@ public abstract class Account
         SwordStats = swordStats;
         AccountStats = accountStats;
         AccountMissions = accountMissions;
+        AccountUpgrades = accountUpgrades;
         SaveData();
     }
 

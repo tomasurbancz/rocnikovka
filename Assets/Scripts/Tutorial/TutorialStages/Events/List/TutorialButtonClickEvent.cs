@@ -22,7 +22,7 @@ public class TutorialButtonClickEvent : TutorialEvent
         try
         {
             _pointer = TutorialSceneSetup.CurrentScene.Arrow[offset];
-        } catch(Exception e)
+        } catch(Exception)
         {
 
         }
@@ -70,5 +70,6 @@ public class TutorialButtonClickEvent : TutorialEvent
 
     public override void DeleteChanges()
     {
+        
     }
 }
