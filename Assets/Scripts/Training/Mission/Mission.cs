@@ -44,7 +44,7 @@ public class Mission
 
     private string GetHeader()
     {
-        return "Mission # " + (_index + 1);
+        return "Mission #" + (_index + 1);
     }
 
     private string GetInfo()
