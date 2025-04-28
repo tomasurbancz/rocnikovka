@@ -19,8 +19,6 @@ public class MissionRewarder
     public void Reward(int value)
     {
         Account account = Account.GetCurrentAccount();
-        Debug.Log(RewardType);
-        Debug.Log(account.AccountStats.Damage + " " + account.AccountStats.Hp);
         switch (RewardType)
         {
             case Type.Sword:
@@ -34,7 +32,6 @@ public class MissionRewarder
                 break;
             }
         }
-        Debug.Log(account.AccountStats.Damage + " " + account.AccountStats.Hp);
         account.SaveData();
     }
 }

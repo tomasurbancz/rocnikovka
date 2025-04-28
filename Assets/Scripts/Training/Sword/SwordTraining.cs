@@ -88,7 +88,6 @@ public class SwordTraining : MonoBehaviour
         }
         if (!animationName.Equals("") || _animationTime < 0)
         {
-            Debug.Log("NEW ANIMATION " + "STAND " + animationName);
             _animator.Play("Player_Stand", 0, 0f);
             _animationTime = 0.5f;
         }
@@ -205,7 +204,7 @@ public class SwordTraining : MonoBehaviour
         {
             _scoreSlider.ChangeGoal(10);
             Account account = Account.GetCurrentAccount();
-            account.AccountStats.Hp += 7;
+            account.AccountStats.Damage += 7;
             account.SaveData();
             _scoreSlider.UpdateProgress(_score);
         }
