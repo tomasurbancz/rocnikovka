@@ -21,6 +21,9 @@ public class Entity
 
     private Entity _enemy;
 
+    private TMP_Text _critical;
+    private TMP_Text _blocked;
+
     private Vector2 _currentPosition;
     public Type EntityType;
     private Vector2 _direction;
@@ -45,15 +48,24 @@ public class Entity
 
     public void StartMoving(Entity entity)
     {
+        _critical.gameObject.SetActive(false);
+        _blocked.gameObject.SetActive(false);
         _enemy = entity;
         _direction = new Vector2(1, 0);
     }
 
+    private void PrintCritBlock(TMP_Text text)
+    {
+        text.gameObject.SetActive(true);
+    }
+
+
     public void Attack()
     {
         int random = Random.Range(0, 10000);
-        if((BlockChance * 100) > random)
+        if((_enemy.BlockChance * 100) > random)
         {
+            PrintCritBlock(_blocked);
             Debug.Log("BLOCKED");
         }
         else
@@ -63,6 +75,7 @@ public class Entity
             if ((CritChance * 100) > random)
             {
                 damage *= 2;
+                PrintCritBlock(_critical);
                 Debug.Log("CRITICAL");
             }
             _enemy.TakeDamage(damage);
@@ -150,8 +163,10 @@ public class Entity
         return r1.Overlaps(r2);
     }
 
-    public void SetUp(Slider slider, TMP_Text healthText, TMP_Text characterNameLocation, Fighting fighting, Image spawn, Sprite sprite, Image collision1, Image collision2, Image collision3, Image collision4)
+    public void SetUp(Slider slider, TMP_Text healthText, TMP_Text characterNameLocation, Fighting fighting, Image spawn, Sprite sprite, Image collision1, Image collision2, Image collision3, Image collision4, TMP_Text critical, TMP_Text blocked)
     {
+        _critical = critical;
+        _blocked = blocked;
         Collision1 = collision1;
         Collision2 = collision2;
         Collision3 = collision3;

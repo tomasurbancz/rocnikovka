@@ -33,6 +33,11 @@ public class Fighting : MonoBehaviour
     public TMP_Text ChestText;
     public Button Chest;
 
+    public TMP_Text PlayerCritical;
+    public TMP_Text PlayerBlocked;
+    public TMP_Text EnemyCritical;
+    public TMP_Text EnemyBlocked;
+
     private Entity _playerEntity;
     private Entity _currentEntity;
     private List<Entity> _entities;
@@ -67,17 +72,97 @@ public class Fighting : MonoBehaviour
                 }
             case 2:
                 {
-                    _entities = new Level1().GetEntities();
+                    _entities = new Level2().GetEntities();
                     break;
                 }
             case 3:
                 {
-                    _entities = new Level1().GetEntities();
+                    _entities = new Level3().GetEntities();
                     break;
                 }
             case 4:
                 {
-                    _entities = new Level1().GetEntities();
+                    _entities = new Level4().GetEntities();
+                    break;
+                }
+            case 5:
+                {
+                    _entities = new Level5().GetEntities();
+                    break;
+                }
+            case 6:
+                {
+                    _entities = new Level6().GetEntities();
+                    break;
+                }
+            case 7:
+                {
+                    _entities = new Level7().GetEntities();
+                    break;
+                }
+            case 8:
+                {
+                    _entities = new Level8().GetEntities();
+                    break;
+                }
+            case 9:
+                {
+                    _entities = new Level9().GetEntities();
+                    break;
+                }
+            case 10:
+                {
+                    _entities = new Level10().GetEntities();
+                    break;
+                }
+            case 11:
+                {
+                    _entities = new Level11().GetEntities();
+                    break;
+                }
+            case 12:
+                {
+                    _entities = new Level12().GetEntities();
+                    break;
+                }
+            case 13:
+                {
+                    _entities = new Level13().GetEntities();
+                    break;
+                }
+            case 14:
+                {
+                    _entities = new Level14().GetEntities();
+                    break;
+                }
+            case 15:
+                {
+                    _entities = new Level15().GetEntities();
+                    break;
+                }
+            case 16:
+                {
+                    _entities = new Level16().GetEntities();
+                    break;
+                }
+            case 17:
+                {
+                    _entities = new Level17().GetEntities();
+                    break;
+                }
+            case 18:
+                {
+                    _entities = new Level18().GetEntities();
+                    break;
+                }
+            case 19:
+                {
+                    _entities = new Level19().GetEntities();
+                    break;
+                }
+            case 20:
+                {
+                    _entities = new Level20().GetEntities();
                     break;
                 }
         }
@@ -152,22 +237,22 @@ public class Fighting : MonoBehaviour
         {
             case Entity.Type.Spider:
                 {
-                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, SpiderTexture, Collision1, Collision2, Collision3, Collision4);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, SpiderTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked);
                     break;
                 }
             case Entity.Type.Frog:
                 {
-                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, FrogTexture, Collision1, Collision2, Collision3, Collision4);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, FrogTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked);
                     break;
                 }
             case Entity.Type.Bird:
                 {
-                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn2, BirdTexture, Collision1, Collision2, Collision3, Collision4);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn2, BirdTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked);
                     break;
                 }
             case Entity.Type.Mouse:
                 {
-                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, MouseTexture, Collision1, Collision2, Collision3, Collision4);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, MouseTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked);
                     break;
                 }
         }
@@ -182,7 +267,7 @@ public class Fighting : MonoBehaviour
             Account account = Account.GetCurrentAccount();
             AccountStats accountStats = account.AccountStats;
             _playerEntity = new Entity(accountStats.Damage, accountStats.BlockChance, accountStats.CritChance, account.Name, accountStats.Hp, Entity.Type.Player);
-            _playerEntity.SetUp(Slider1, HealthText1, Text1, this, Player, null, Collision1, Collision2, Collision3, Collision4);
+            _playerEntity.SetUp(Slider1, HealthText1, Text1, this, Player, null, Collision1, Collision2, Collision3, Collision4, PlayerCritical, PlayerBlocked);
             _progress = 0;
             SetUpEnemies();
             SpawnNewEntity();
