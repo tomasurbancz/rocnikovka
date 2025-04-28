@@ -22,6 +22,7 @@ public class Coin : MonoBehaviour
         coin._position = position.ToNewVector2();
         coin.Image.transform.localScale = imageToClone.transform.localScale;
         coin.Image.color = coin.Image.color.GetVisibleColor();
+        coin.Value = value;
 
         coin._direction = new Vector2(Random.Range(-30, 30)/30000f, Random.Range(10, 30) / 30000f);
 
@@ -32,6 +33,8 @@ public class Coin : MonoBehaviour
     public void Pickup()
     {
         Account account = Account.GetCurrentAccount();
+        account.AccountStats.Coins += Value;
+        Debug.Log("Pickup " + account.AccountStats.Coins);
         account.SaveData();
     }
 

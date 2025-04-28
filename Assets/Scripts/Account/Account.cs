@@ -11,6 +11,7 @@ public abstract class Account
     public AccountStats AccountStats;
     public AccountMissions AccountMissions;
     public AccountUpgrades AccountUpgrades;
+    private static Account instance;
 
     public Account(string name, int arenaLevel, TrainingStats armorStats, TrainingStats swordStats, AccountStats accountStats, AccountMissions accountMissions, AccountUpgrades accountUpgrades)
     {
@@ -28,7 +29,8 @@ public abstract class Account
 
     public static Account GetCurrentAccount()
     {
-        if (Saver.GetString("LoginType").Equals("Local")) return new LocalAccount();
-        return null;
+        if (instance == null)
+            if (Saver.GetString("LoginType").Equals("Local")) instance = new LocalAccount();
+        return instance;
     }
 }

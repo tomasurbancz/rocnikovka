@@ -40,6 +40,7 @@ public class CoinSpawner : MonoBehaviour
             ))
             {
                 coin.Hide();
+                coin.Pickup();
                 coinsToRemove.Add(coin);
                 _coinTracker.Remaining -= 1;
             }

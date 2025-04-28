@@ -21,7 +21,7 @@ public class Chest : MonoBehaviour
             ChestText.color = new Color(0, 0, 0, 0);
             Animator.SetTrigger("OpenChest");
             _opened = true;
-            _coinTracker = CoinSpawner.SpawnCoins(100 * Saver.GetInt("FightingLevel"), 10, chest.transform.position);
+            _coinTracker = CoinSpawner.SpawnCoins(10 * Saver.GetInt("FightingLevel"), 10, chest.transform.position);
         }
     }
 
@@ -29,7 +29,6 @@ public class Chest : MonoBehaviour
     {
         if (_opened)
         {
-            Debug.Log(_coinTracker.Remaining);
             if (_coinTracker.Remaining <= 0)
             {
                 ContinueButton.gameObject.SetActive(true);

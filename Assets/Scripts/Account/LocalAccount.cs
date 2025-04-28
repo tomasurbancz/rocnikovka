@@ -40,7 +40,7 @@ public class LocalAccount : Account
         Saver.SaveInt("LocalHp", AccountStats.Hp);
         Saver.SaveFloat("LocalBlockChance", AccountStats.BlockChance);
         Saver.SaveFloat("LocalCritChance", AccountStats.CritChance);
-        Saver.SaveFloat("LocalCoins", AccountStats.Coins);
+        Saver.SaveInt("LocalCoins", AccountStats.Coins);
         Saver.SaveInt("LocalSwordMission", AccountMissions.Sword);
         Saver.SaveInt("LocalArmorMission", AccountMissions.Armor);
         Saver.SaveInt("LocalSwordUpgrade", AccountUpgrades.Sword);
