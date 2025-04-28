@@ -38,6 +38,8 @@ public class Fighting : MonoBehaviour
     public TMP_Text EnemyCritical;
     public TMP_Text EnemyBlocked;
 
+    public Animator Animator;
+
     private Entity _playerEntity;
     private Entity _currentEntity;
     private List<Entity> _entities;
@@ -237,22 +239,22 @@ public class Fighting : MonoBehaviour
         {
             case Entity.Type.Spider:
                 {
-                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, SpiderTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, SpiderTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked, null);
                     break;
                 }
             case Entity.Type.Frog:
                 {
-                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, FrogTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, FrogTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked, null);
                     break;
                 }
             case Entity.Type.Bird:
                 {
-                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn2, BirdTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn2, BirdTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked, null);
                     break;
                 }
             case Entity.Type.Mouse:
                 {
-                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, MouseTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked);
+                    _currentEntity.SetUp(Slider2, HealthText2, Text2, this, EnemySpawn1, MouseTexture, Collision1, Collision2, Collision3, Collision4, EnemyCritical, EnemyBlocked, null);
                     break;
                 }
         }
@@ -267,7 +269,7 @@ public class Fighting : MonoBehaviour
             Account account = Account.GetCurrentAccount();
             AccountStats accountStats = account.AccountStats;
             _playerEntity = new Entity(accountStats.Damage, accountStats.BlockChance, accountStats.CritChance, account.Name, accountStats.Hp, Entity.Type.Player);
-            _playerEntity.SetUp(Slider1, HealthText1, Text1, this, Player, null, Collision1, Collision2, Collision3, Collision4, PlayerCritical, PlayerBlocked);
+            _playerEntity.SetUp(Slider1, HealthText1, Text1, this, Player, null, Collision1, Collision2, Collision3, Collision4, PlayerCritical, PlayerBlocked, Animator);
             _progress = 0;
             SetUpEnemies();
             SpawnNewEntity();

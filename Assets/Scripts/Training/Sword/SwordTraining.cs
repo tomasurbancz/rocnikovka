@@ -82,10 +82,22 @@ public class SwordTraining : MonoBehaviour
         {
             if (_lastKey == KeyCode.A)
             {
-                animationName = "Player_Left";
+                animationName = "PlayerTrainingLeft";
+            }
+            if (_lastKey == KeyCode.D)
+            {
+                animationName = "PlayerTrainingRight";
+            }
+            if (_lastKey == KeyCode.S)
+            {
+                animationName = "PlayerTrainingDown";
+            }
+            if (_lastKey == KeyCode.W)
+            {
+                animationName = "PlayerTrainingUp";
             }
             _isNewKey = false;
-            _animationTime = 0.15f;
+            _animationTime = 0.2f;
         }
         if (!animationName.Equals("") || _animationTime < 0)
         {
@@ -94,7 +106,7 @@ public class SwordTraining : MonoBehaviour
         }
         if (!animationName.Equals(""))
         {
-            //Animator.Play(animationName, 0, 0f);
+            _animator.Play(animationName, 0, 0f);
         }
     }
 

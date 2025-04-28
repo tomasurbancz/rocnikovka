@@ -29,6 +29,10 @@ public class Entity
     private Vector2 _direction;
     private Image _image;
 
+    private Animator Animator;
+    private float _animCooldown = 1;
+    private bool _playingAnim;
+
     public enum Type
     {
         Player, Bird, Spider, Frog, Mouse
@@ -93,6 +97,15 @@ public class Entity
 
     public void Update()
     {
+        if(_playingAnim) 
+        {
+            _animCooldown -= Time.deltaTime;
+            if(_animCooldown <= 0) 
+            {
+                _playingAnim = false;
+            }
+            Animator.Play("PlayerFightStand", 0, 0f);
+        }
         Move();
     }
 
@@ -100,8 +113,14 @@ public class Entity
     {
         if (EntityType.Equals(Type.Player))
         {
-            if(_direction.x == 1)
+            if (_direction.x == 1)
             {
+                if (!_playingAnim)
+                {
+                    Animator.Play("PlayerFightAnim", 0, 0f);
+                    _playingAnim = true;
+                    _animCooldown = 1f;
+                }
                 _currentPosition.x += 15f * Time.deltaTime;
                 if(AreImagesOverlapping(_image, Collision4))
                 {
@@ -163,8 +182,9 @@ public class Entity
         return r1.Overlaps(r2);
     }
 
-    public void SetUp(Slider slider, TMP_Text healthText, TMP_Text characterNameLocation, Fighting fighting, Image spawn, Sprite sprite, Image collision1, Image collision2, Image collision3, Image collision4, TMP_Text critical, TMP_Text blocked)
+    public void SetUp(Slider slider, TMP_Text healthText, TMP_Text characterNameLocation, Fighting fighting, Image spawn, Sprite sprite, Image collision1, Image collision2, Image collision3, Image collision4, TMP_Text critical, TMP_Text blocked, Animator animator)
     {
+        Animator = animator;
         _critical = critical;
         _blocked = blocked;
         Collision1 = collision1;
