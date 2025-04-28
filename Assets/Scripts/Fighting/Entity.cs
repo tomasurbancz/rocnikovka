@@ -30,8 +30,10 @@ public class Entity
     private Image _image;
 
     private Animator Animator;
-    private float _animCooldown = 1;
+    private float _animCooldown = 1f;
+    private float _animStartCooldown = 0.05f;
     private bool _playingAnim;
+    private bool _startedFight;
 
     public enum Type
     {
@@ -52,6 +54,11 @@ public class Entity
 
     public void StartMoving(Entity entity)
     {
+        if (EntityType.Equals(Type.Player))
+        {
+            _startedFight = true;
+        }
+
         _critical.gameObject.SetActive(false);
         _blocked.gameObject.SetActive(false);
         _enemy = entity;
@@ -97,14 +104,33 @@ public class Entity
 
     public void Update()
     {
-        if(_playingAnim) 
+        if (_startedFight)
         {
-            _animCooldown -= Time.deltaTime;
-            if(_animCooldown <= 0) 
+            if (_playingAnim)
             {
-                _playingAnim = false;
+                {
+                    _animCooldown -= Time.deltaTime;
+                    if (_animCooldown <= 0)
+                    {
+                        Debug.Log("STOPPING ANIM");
+                        Animator.Play("PlayerFightStand", 0, 0f);
+                        _playingAnim = false;
+                        _startedFight = false;
+                    }
+                }
             }
-            Animator.Play("PlayerFightStand", 0, 0f);
+            else
+            {
+                _animStartCooldown -= Time.deltaTime;
+                Debug.Log(_animStartCooldown);
+                if (_animStartCooldown <= 0)
+                {
+                    Animator.Play("PlayerFightRight", 0, 0f);
+                    _playingAnim = true;
+                    _animCooldown = 1f;
+                    _animStartCooldown = 0.05f;
+                }
+            }
         }
         Move();
     }
@@ -115,12 +141,6 @@ public class Entity
         {
             if (_direction.x == 1)
             {
-                if (!_playingAnim)
-                {
-                    Animator.Play("PlayerFightAnim", 0, 0f);
-                    _playingAnim = true;
-                    _animCooldown = 1f;
-                }
                 _currentPosition.x += 15f * Time.deltaTime;
                 if(AreImagesOverlapping(_image, Collision4))
                 {
