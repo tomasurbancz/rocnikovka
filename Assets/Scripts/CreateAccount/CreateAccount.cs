@@ -52,7 +52,7 @@ public class CreateAccount : MonoBehaviour
 
     public void Create()
     {
-        new LocalAccount(_name);
+        new LocalAccount(NameField.text.Replace("\u200B", "").Trim());
         Saver.SaveBool("LocalTutorialCompleted", false);
         Saver.Save();
     }
