@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ArmorMovement : MonoBehaviour
 {
-    private float _radius = 2f;
+    private float _radius = 2.2f;
     public Image Character;
 
     private void Update()

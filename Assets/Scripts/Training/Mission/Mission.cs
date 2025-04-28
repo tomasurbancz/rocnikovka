@@ -53,7 +53,7 @@ public class Mission
         switch (_missionType)
         {
             case MissionType.APPLES:
-                startText = "Break apples";
+                startText = "Break apples in row";
                 break;
             case MissionType.SCORE:
                 startText = "Reach score";

@@ -38,6 +38,7 @@ public class SwordTraining : MonoBehaviour
     private float _animationTime = 0.15f;
 
     private Missions _missions;
+    private float _timeFromStart;
     public TMP_Text MissionHeaderText;
     public TMP_Text MissionInfoText;
 
@@ -133,7 +134,12 @@ public class SwordTraining : MonoBehaviour
                             _missions.UpdateMission(MissionType.APPLES, 1);
                             RemainingTutorialApples--;
                         }
-                        else _score += 5;
+                        else
+                        {
+                            _score += 5;
+                            _missions.UpdateMission(MissionType.STARS, 1);
+                            _missions.UpdateMission(MissionType.STARS_IN_ROW, 1);
+                        }
                         _missions.UpdateMission(MissionType.SCORE, _score, true);
                         UpdateScore();
                         Debug.Log("Collision with apple");
@@ -183,6 +189,7 @@ public class SwordTraining : MonoBehaviour
 
     private void StartNewGame()
     {
+        _timeFromStart = 0;
         _score = 0;
         UpdateScore();
         _speed = 2f;
@@ -213,6 +220,9 @@ public class SwordTraining : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_missions.IsMissionType(MissionType.TIME)) _timeFromStart += Time.deltaTime;
+        _missions.UpdateMission(MissionType.TIME, (int) _timeFromStart, true);
+        _missions.UpdateMission(MissionType.SCORE, _score, true);
         if(_trainingObjects.Count < _maxTrainingObjects && _objectSpawnCooldown <= 0)
         {
             SpawnNewObject();

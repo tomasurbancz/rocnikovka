@@ -57,6 +57,11 @@ public class Missions
         UpdateText();
     }
 
+    public bool IsMissionType(MissionType missionType)
+    {
+        return missionType.Equals(_currentMission.GetMissionType());
+    }
+
     private void ChangeMission()
     {
         _currentMissionIndex++;
